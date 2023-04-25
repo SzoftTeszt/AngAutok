@@ -2,4 +2,39 @@
     <div *ngFor="let oszlop of oszlopok" class="col">
         {{oszlop}}
     </div>
+    <div class="col">
+        Actions
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">        
+        <input type="text" 
+        class="form-control" 
+        [(ngModel)]="ujAuto[oszlop]">
+    </div>
+    <div class="col">
+        <button type="button" (click)="onCreate(ujAuto)" class="btn btn-danger">Add</button>
+    </div>
+</div>
+
+
+<div *ngFor="let auto of autok" class="row my-2">
+
+    <!-- <div class="row">
+        {{auto|json}}
+    </div> -->
+   
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        
+        <input type="text" 
+        class="form-control" 
+        [(ngModel)]="auto[oszlop]">
+
+        <!-- {{auto[oszlop]}} -->        
+    </div>
+    <div class="col">
+        <button type="button" (click)="onDelete(auto)" class="btn btn-danger">Delete</button>
+        <button type="button" (click)="onUpdate(auto)" class="btn btn-warning">Edit</button>
+    </div>
 </div>

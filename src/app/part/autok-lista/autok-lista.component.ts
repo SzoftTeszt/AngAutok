@@ -10,6 +10,7 @@ export class AutokListaComponent implements OnInit {
   valtozo:String="körte";
   oszlopok=["id","marka","rendszam","tipus"];
   autok:any;
+  ujAuto:any={};
   constructor(private base:BaseService) {    
     this.base.getAll().subscribe(
       (eredmeny)=>this.autok=eredmeny
@@ -18,6 +19,37 @@ export class AutokListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.valtozo="CicaMica";
+  }
+
+  onDelete(auto:any){
+    this.base.onDelete(auto).subscribe(
+      ()=>{
+        this.base.getAll().subscribe(
+          (eredmeny)=>this.autok=eredmeny
+        )
+      }
+    );
+  }
+
+  onUpdate(auto:any){
+    this.base.onUpdate(auto).subscribe(
+      ()=>{
+        this.base.getAll().subscribe(
+          (eredmeny)=>this.autok=eredmeny
+        )
+      }
+    );
+  }
+  
+  onCreate(auto:any){
+    this.base.onCreate(auto).subscribe(
+      ()=>{
+        this.ujAuto={}
+        this.base.getAll().subscribe(
+          (eredmeny)=>this.autok=eredmeny
+        )
+      }
+    );
   }
 
 }
